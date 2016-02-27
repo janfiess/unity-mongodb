@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{224EAB52-A0F6-DCF6-C96E-0E93C54C7B51}</ProjectGuid>
+    <ProjectGuid>{5B90B695-ABDC-F9AB-4ECF-231E3569845B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -54,10 +54,10 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="MongoDB.Bson">
- <HintPath>/Users/Shared/Unity/Unity+MongoDB3/Assets/Plugins/MongoDB.Bson.dll</HintPath>
+ <HintPath>/Users/Fabi/Documents/Github/unity-mongodb/Assets/Plugins/MongoDB.Bson.dll</HintPath>
  </Reference>
  <Reference Include="MongoDB.Driver">
- <HintPath>/Users/Shared/Unity/Unity+MongoDB3/Assets/Plugins/MongoDB.Driver.dll</HintPath>
+ <HintPath>/Users/Fabi/Documents/Github/unity-mongodb/Assets/Plugins/MongoDB.Driver.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
