@@ -285,5 +285,65 @@ public class HelloMongo : MonoBehaviour {
 		Debug.Log("16. COUNT DOCS: \n" + playercollection.Count());
 
 		// logs 3
+
+
+
+		/*
+		 * 17. INSERT new dataset: INSERT INTO players (email, name, scores, level) VALUES("..","..","..","..");
+		 */
+
+
+
+		playercollection.Insert(new BsonDocument{
+			{ "level", 2 },
+			{ "name", "Kati" },
+			{ "scores", 8828 },
+			{ "email", "k@t.i" },
+			{ "fix_date", new DateTime(2015,2,23, 0,0,0, DateTimeKind.Utc) },
+			{ "current_date", DateTime.Now },
+			{ "date_utcNow", DateTime.UtcNow }
+
+		});
+		Debug.Log ("17. INSERTED A DOC with some date formats");
+
+
+
+		/*
+		 * 18. SELECT scores FROM players WHERE {[{nested}]}
+		 */
+
+		DateTime fix_date = new DateTime();
+		DateTime date_utcNow = new DateTime();
+		DateTime nodejs_now = new DateTime();
+
+		foreach (var document in playercollection.Find(new QueryDocument("name", "Kati"))){
+			Debug.Log ("18. SELECT DOC PART WHERE DATE: fix_date: \n" + document["fix_date"]);
+			Debug.Log ("current_date: \n" + document["current_date"]);
+			Debug.Log ("date_utcNow: \n" + document["date_utcNow"]);
+
+			fix_date = document["fix_date"].ToUniversalTime();
+			date_utcNow = document["current_date"].ToUniversalTime();
+
+			//Debug.Log ("node: \n" + document);
+		}
+
+		// logs
+		// fix_date:     2015-02-23T00:00:00Z       In MongoDB saved as ISODate("2015-02-23T00:00:00Z"), not just as string
+		// current_date: 2016-02-28T10:38:22.719Z   In MongoDB saved as ISODate("2016-02-28T10:38:22.719Z"), not just as string
+		// date_utcNow:  2016-02-28T10:38:22.719Z   In MongoDB saved as ISODate("2016-02-28T10:38:22.719Z"), not just as string
+
+
+		// Note: Ich accessing date from Node.js, the date object must be created directly server-side (in app.js) and not client-side and then over socket.io
+		// data.timestamp = new Date(Date.now());
+		// In order to test, create a dataset with name="Test" in Node.js, store it in MongoDB and then call the following function
+		/*
+		foreach (var document in playercollection.Find(new QueryDocument("name", "Test"))){
+			Debug.Log ("node: \n" + document["timestamp"]);
+			nodejs_now = document["timestamp"].ToUniversalTime();
+		}
+		*/
+
+		if (date_utcNow > fix_date) Debug.Log("date_utcNow ist aktueller als fix_date");
+		// if (nodejs_now > fix_date) Debug.Log("nodejs_now ist aktueller als fix_date");
 	}
 }
